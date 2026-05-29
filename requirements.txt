@@ -1,11 +1,28 @@
-openai>=1.0.0
-python-dotenv
-RPi.GPIO
-Adafruit_DHT
-luma.oled
-pyttsx3
-SpeechRecognition
-opencv-python-headless
-numpy
-smbus2
-requests
+# TARS Robot – Python dependencies
+# Install with: pip install -r requirements.txt
+
+# ── Core AI ──────────────────────────────────────────────
+openai>=1.30.0
+python-dotenv>=1.0.0
+
+# ── Voice I/O ────────────────────────────────────────────
+pyttsx3>=2.90
+SpeechRecognition>=3.10.0
+PyAudio>=0.2.14          # required by SpeechRecognition for microphone input
+
+# ── Sound Effects (optional – auto-detected) ─────────────
+simpleaudio>=1.0.4
+numpy>=1.24.0
+
+# ── Display (Raspberry Pi only) ──────────────────────────
+luma.oled>=3.12.0
+luma.core>=2.4.0
+
+# ── GPIO / Sensors (Raspberry Pi only) ──────────────────
+# RPi.GPIO and Adafruit_DHT are pre-installed on Raspbian;
+# uncomment if setting up from scratch:
+# RPi.GPIO>=0.7.1
+# Adafruit_DHT>=1.4.0
+
+# ── Testing ───────────────────────────────────────────────
+pytest>=7.4.0
