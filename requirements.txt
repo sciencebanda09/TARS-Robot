@@ -1,0 +1,11 @@
+openai>=1.0.0
+python-dotenv
+RPi.GPIO
+Adafruit_DHT
+luma.oled
+pyttsx3
+SpeechRecognition
+opencv-python-headless
+numpy
+smbus2
+requests
