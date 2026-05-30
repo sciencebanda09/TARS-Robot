@@ -1,3 +1,6 @@
 .env
 __pycache__/
+*.pyc
 memory.json
+.vscode/
+.idea/
