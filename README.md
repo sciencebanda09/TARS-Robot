@@ -215,3 +215,92 @@ Apache 2.0. See `LICENSE`.
 
 *"Absolute honesty isn't always the most diplomatic or the safest form of communication with emotional beings."*  
 *"Ninety percent, then."*
+
+---
+
+## v3 Features
+
+### 1 — Proactive Idle Behaviour
+
+When no one speaks for `TARS_IDLE_TIMEOUT` seconds (default 40s), TARS randomly picks a dry ambient line, shifts its OLED expression, and mutters it. After speaking it waits a random interval (30–90s) before doing it again — so it never feels like a loop.
+
+A separate `ProactiveAlertMonitor` thread polls sensors every 5 seconds and speaks unprompted when:
+- Temperature exceeds `TARS_TEMP_ALERT_C` (42°C default)
+- Temperature exceeds `TARS_TEMP_DANGER_C` (60°C — urgent tone)
+- An obstacle appears within `TARS_OBSTACLE_ALERT` cm (20cm default)
+
+Both are tunable via environment variables and reset correctly once conditions normalise.
+
+---
+
+### 2 — PIR Motion Wake System
+
+Hardware: **HC-SR501** PIR sensor wired to GPIO 27 (BCM).
+
+TARS starts awake. After `TARS_SLEEP_AFTER` seconds (default 120s) of no motion:
+- Motors lock
+- OLED shows `SLEEPING`
+- Voice loop pauses (saves CPU and mic power)
+
+When the PIR fires:
+- `on_wake` callback plays power-up sound and greets the person
+- All systems resume instantly
+
+`notify_activity()` is called on every voice command and AI response, so TARS won't sleep mid-conversation. The sleep timer only starts when the room is genuinely empty.
+
+**Mock mode**: if `RPi.GPIO` is unavailable (laptop/dev), TARS stays permanently awake — nothing breaks.
+
+```
+HC-SR501 wiring:
+  VCC → 5V pin
+  GND → GND pin
+  OUT → GPIO 27 (BCM)
+```
+
+---
+
+### 3 — Web Dashboard
+
+Served at `http://<pi-ip>:8080` with zero external dependencies (pure stdlib `http.server`).
+
+**Live panels:**
+- OLED face preview rendered on an HTML5 canvas (mirrors the real display)
+- Sensor telemetry: temperature + trend, obstacle distance + trend, humidity
+- Personality parameter bars: Humor / Honesty / Verbosity
+- System stats: interaction count, session uptime, fan state, PIR awake state
+
+**Controls:**
+- D-pad motion control with speed slider (sends directly to motors)
+- Command input: type any command TARS would understand via voice
+- Force-speak: make TARS say arbitrary text immediately
+- Live conversation console: scrolling log of all turns with timestamps
+
+The dashboard feeds into the same command queue as the voice listener — so a command typed in the browser goes through the full AI loop just like a spoken one.
+
+**Environment variables:**
+```
+TARS_DASHBOARD_PORT=8080
+TARS_DASHBOARD_HOST=0.0.0.0   # bind to all interfaces for LAN access
+```
+
+Access from your phone: `http://192.168.x.x:8080`
+
+---
+
+## Full Module Map (v3)
+
+```
+tars/
+  ai.py         – LLM brain, emotion model, tool schemas, retry
+  dashboard.py  – HTTP dashboard server (NEW v3)
+  display.py    – OLED with blink animation
+  fan.py        – Proportional thermal control
+  idle.py       – Idle monologue + proactive alerts (NEW v3)
+  main.py       – Orchestrator: voice + dashboard + PIR + safety thread
+  memory.py     – Episodic memory, semantic tagging, atomic saves
+  motors.py     – Smooth ramp, timed moves, odometer
+  pir.py        – PIR wake/sleep controller (NEW v3)
+  sensor.py     – Kalman filter, trend detection, health monitor
+  sounds.py     – Synthesised sound effects
+  voice.py      – Async TTS queue, STT with recalibration
+```
