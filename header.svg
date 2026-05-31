@@ -1,0 +1,74 @@
+<svg viewBox="0 0 900 220" xmlns="http://www.w3.org/2000/svg" width="900" height="220">
+  <defs>
+    <pattern id="scanlines" x="0" y="0" width="1" height="4" patternUnits="userSpaceOnUse">
+      <rect width="1" height="1" fill="#ffffff" opacity="0.025"/>
+      <rect y="1" width="1" height="3" fill="transparent"/>
+    </pattern>
+  </defs>
+
+  <!-- deep space background -->
+  <rect width="900" height="220" fill="#050810"/>
+
+  <!-- scanline overlay -->
+  <rect width="900" height="220" fill="url(#scanlines)"/>
+
+  <!-- star field — static dots -->
+  <circle cx="42"  cy="18"  r="0.8" fill="#ffffff" opacity="0.6"/>
+  <circle cx="130" cy="9"   r="0.6" fill="#ffffff" opacity="0.4"/>
+  <circle cx="210" cy="31"  r="1.0" fill="#ffffff" opacity="0.7"/>
+  <circle cx="340" cy="14"  r="0.7" fill="#ffffff" opacity="0.5"/>
+  <circle cx="480" cy="7"   r="0.9" fill="#ffffff" opacity="0.6"/>
+  <circle cx="590" cy="22"  r="0.6" fill="#ffffff" opacity="0.4"/>
+  <circle cx="700" cy="11"  r="1.1" fill="#ffffff" opacity="0.7"/>
+  <circle cx="820" cy="19"  r="0.7" fill="#ffffff" opacity="0.5"/>
+  <circle cx="860" cy="35"  r="0.8" fill="#ffffff" opacity="0.3"/>
+  <circle cx="75"  cy="195" r="0.7" fill="#ffffff" opacity="0.4"/>
+  <circle cx="200" cy="205" r="0.9" fill="#ffffff" opacity="0.5"/>
+  <circle cx="440" cy="210" r="0.6" fill="#ffffff" opacity="0.3"/>
+  <circle cx="660" cy="200" r="1.0" fill="#ffffff" opacity="0.6"/>
+  <circle cx="800" cy="208" r="0.7" fill="#ffffff" opacity="0.4"/>
+
+  <!-- TARS monolith shape — left side -->
+  <rect x="38" y="55" width="28" height="110" rx="2" fill="#0a1628" stroke="#1e3a5f" stroke-width="0.8"/>
+  <rect x="43" y="62" width="4"  height="96"  rx="1" fill="#1e3a5f" opacity="0.6"/>
+  <rect x="49" y="62" width="4"  height="96"  rx="1" fill="#1e3a5f" opacity="0.4"/>
+  <!-- TARS eye slit — left monolith -->
+  <rect x="41" y="103" width="22" height="3" rx="1" fill="#4fc3f7" opacity="0.9"/>
+  <rect x="41" y="103" width="22" height="3" rx="1" fill="#4fc3f7" opacity="0.4" filter="blur(2px)"/>
+
+  <!-- TARS monolith shape — right side -->
+  <rect x="834" y="55" width="28" height="110" rx="2" fill="#0a1628" stroke="#1e3a5f" stroke-width="0.8"/>
+  <rect x="839" y="62" width="4"  height="96"  rx="1" fill="#1e3a5f" opacity="0.6"/>
+  <rect x="845" y="62" width="4"  height="96"  rx="1" fill="#1e3a5f" opacity="0.4"/>
+  <!-- TARS eye slit — right monolith -->
+  <rect x="837" y="103" width="22" height="3" rx="1" fill="#4fc3f7" opacity="0.9"/>
+
+  <!-- top hairline -->
+  <rect x="80" y="58" width="740" height="0.5" fill="#1e3a5f" opacity="0.6"/>
+  <!-- bottom hairline -->
+  <rect x="80" y="161" width="740" height="0.5" fill="#1e3a5f" opacity="0.6"/>
+
+  <!-- T.A.R.S title -->
+  <text x="450" y="116"
+        text-anchor="middle" dominant-baseline="middle"
+        font-family="'Courier New', Courier, monospace"
+        font-size="78" font-weight="900" letter-spacing="18"
+        fill="#e8f4fd">T.A.R.S</text>
+
+  <!-- blue glow underline -->
+  <rect x="240" y="133" width="420" height="1.5" rx="0.75" fill="#4fc3f7" opacity="0.7"/>
+
+  <!-- subtitle -->
+  <text x="450" y="155"
+        text-anchor="middle"
+        font-family="'Courier New', Courier, monospace"
+        font-size="11" letter-spacing="4"
+        fill="#4fc3f7" opacity="0.8">TACTICAL ASSISTANCE &amp; RESPONSE SYSTEM</text>
+
+  <!-- version tag -->
+  <text x="450" y="178"
+        text-anchor="middle"
+        font-family="'Courier New', Courier, monospace"
+        font-size="10" letter-spacing="2"
+        fill="#1e3a5f">v3  ·  raspberry pi  ·  honesty: 90%</text>
+</svg>
